@@ -144,6 +144,15 @@ p, a, h1, h2, h3, h4, h5, label, button {
   .flex-chips .chip-title {
     color: #0d1116;
   }
+
+  .resume-btn {
+    border-color: #0d1116 !important;
+    color: #0d1116 !important;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.06) !important;
+    }
+  }
 }
 
 .light-mode {
