@@ -8,7 +8,7 @@ import {
   Navigation,
   Footer,
 } from "./components";
-import FadeIn from './components/FadeIn';
+import ScrollReveal from './components/ScrollReveal';
 import './index.scss';
 
 function App() {
@@ -29,13 +29,11 @@ function App() {
     return (
     <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
         <Navigation parentToChild={{mode}} modeChange={handleModeChange}/>
-        <FadeIn transitionDuration={700}>
-            <Main/>
-            <Expertise/>
-            <Timeline/>
-            <Project/>
-            <Contact/>
-        </FadeIn>
+        <Main/>
+        <ScrollReveal><Expertise/></ScrollReveal>
+        <ScrollReveal delay={100}><Timeline/></ScrollReveal>
+        <ScrollReveal delay={100}><Project/></ScrollReveal>
+        <ScrollReveal delay={100}><Contact/></ScrollReveal>
         <Footer />
     </div>
     );
