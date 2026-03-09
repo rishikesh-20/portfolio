@@ -9,6 +9,7 @@ import {
   Footer,
 } from "./components";
 import ScrollReveal from './components/ScrollReveal';
+import { BackgroundPaths } from './components/ui/BackgroundPaths';
 import './index.scss';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
 
     return (
     <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
+        <BackgroundPaths />
         <Navigation parentToChild={{mode}} modeChange={handleModeChange}/>
         <Main/>
         <ScrollReveal><Expertise/></ScrollReveal>

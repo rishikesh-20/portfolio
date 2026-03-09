@@ -16,11 +16,6 @@ code {
 .main-container {
   position: relative;
   background-color: #0d1116;
-  background-image: url("./assets/images/bg-dark.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
 }
 
 a {
@@ -67,6 +62,8 @@ p, a, h1, h2, h3, h4, h5, label, button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 .header-image {
@@ -94,15 +91,12 @@ p, a, h1, h2, h3, h4, h5, label, button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 .light-mode {
   background-color: #f8f9fa;
-  background-image: url("./assets/images/bg-light.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
 
   .navigation-bar {
     background-color: #f8f9fa;
@@ -158,6 +152,22 @@ p, a, h1, h2, h3, h4, h5, label, button {
       background-color: rgba(0, 0, 0, 0.06) !important;
     }
   }
+
+  .skills-container,
+  .projects-container {
+    background: rgba(248, 249, 250, 0.85);
+    backdrop-filter: blur(6px);
+    border-radius: 16px;
+  }
+}
+
+/* ─── Background paths color per mode ─── */
+.dark-mode .bg-paths-wrapper {
+  color: #8b00ff;
+}
+
+.light-mode .bg-paths-wrapper {
+  color: #7c3aed;
 }
 
 .light-mode {
