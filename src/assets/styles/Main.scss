@@ -16,7 +16,7 @@
         display: flex;
         flex-direction: row;
         gap: 10px;
-        color: white;
+        color: var(--text);
 
         svg {
             font-size: 1.8em;
@@ -75,25 +75,20 @@
     img {
         width: 210px;
         border-radius: 50%;
-        transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
-                    box-shadow 350ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    img:hover {
-        transform: scale(1.04);
-        box-shadow: 0 0 0 4px rgba(80, 0, 202, 0.35),
-                    0 0 20px 6px rgba(80, 0, 202, 0.18);
+        box-shadow: 0 0 0 2px var(--accent);
     }
 }
 
 .about-section .content .social_icons a,
 .about-section .content .mobile_social_icons a {
     display: inline-flex;
-    transition: transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
+    color: var(--text);
+    transition: color 250ms ease;
 }
 
 .about-section .content .social_icons a:hover,
 .about-section .content .mobile_social_icons a:hover {
-    transform: translateY(-4px);
+    color: var(--accent);
 }
 
 .about p {
@@ -165,8 +160,8 @@
             display: flex !important;
             flex-direction: row;
             gap: 10px;
-            color: white;
-    
+            color: var(--text);
+
             svg {
                 font-size: 1.8em;
             }

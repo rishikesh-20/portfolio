@@ -22,7 +22,7 @@ function Main() {
           </div>
           <h1>Rishikesh Regatte</h1>
           <p className="tagline">
-            <TypeWriter text="Data Engineer | ML Enthusiast" charSpeed={55} startDelay={400} />
+            <TypeWriter text="Data Engineer | ML Enthusiast" charSpeed={55} startDelay={1100} />
           </p>
           <p>Graduate Student at University of North Carolina at Charlotte</p>
           <p className="bio">

@@ -9,7 +9,7 @@ import {
   Footer,
 } from "./components";
 import ScrollReveal from './components/ScrollReveal';
-import { BackgroundPaths } from './components/ui/BackgroundPaths';
+import { ShaderBackground } from './components/ui/ShaderBackground';
 import './index.scss';
 
 function App() {
@@ -29,7 +29,14 @@ function App() {
 
     return (
     <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
-        <BackgroundPaths />
+        <div className="shader-bg" aria-hidden="true">
+            <ShaderBackground
+                key={mode}
+                color1={mode === 'dark' ? '#6f97a8' : '#aac6d2'}
+                color2={mode === 'dark' ? '#1b2a31' : '#efe9dd'}
+            />
+        </div>
+        <div className="grain-overlay" aria-hidden="true" />
         <Navigation parentToChild={{mode}} modeChange={handleModeChange}/>
         <Main/>
         <ScrollReveal><Expertise/></ScrollReveal>

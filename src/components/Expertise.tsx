@@ -7,30 +7,41 @@ import Chip from "@mui/material/Chip";
 import "../assets/styles/Expertise.scss";
 
 const skillsCategoryOne = [
-  "Python",
-  "SQL",
+  "XGBoost",
+  "Scikit-learn",
+  "LangChain",
+  "Retrieval-Augmented Generation",
+  "Prompt Engineering",
   "Pandas",
   "NumPy",
-  "Machine learning fundamentals",
-  "Data visualization"
+  "Matplotlib"
 ];
 
 const skillsCategoryTwo = [
+  "Databricks",
+  "Delta Lake",
   "Apache Airflow",
-  "dbt",
-  "Dagster",
+  "Airbyte",
   "DuckDB",
-  "AWS",
-  "ETL and ELT pipelines"
+  "ETL Pipelines",
+  "Data Warehousing",
+  "MLflow",
+  "Unity Catalog",
+  "AWS"
 ];
 
 const skillsCategoryThree = [
+  "Python",
+  "SQL",
+  "Java",
+  "C++",
+  "JavaScript",
+  "React",
   "Streamlit",
-  "Python scripting",
-  "API integration",
-  "Git version control",
-  "Dashboard development",
-  "Basic web development"
+  "Node.js",
+  "REST APIs",
+  "Power BI",
+  "Git"
 ];
 
 function Expertise() {
@@ -42,10 +53,11 @@ function Expertise() {
         <div className="skills-grid">
           <div className="skill">
             <FontAwesomeIcon icon={faPython} size="3x" />
-            <h3>Data Science and Analytics</h3>
+            <h3>AI and Machine Learning</h3>
             <p>
-              Strong foundation in data analysis, machine learning concepts,
-              and visualization using Python based tools.
+              Building AI and machine learning systems, including
+              retrieval-augmented generation, LLM applications, and predictive
+              modeling with the Python data science stack.
             </p>
             <div className="flex-chips">
               <span className="chip-title">Skills:</span>
@@ -72,10 +84,10 @@ function Expertise() {
 
           <div className="skill">
             <FontAwesomeIcon icon={faCode} size="3x" />
-            <h3>Software Development and Data Applications</h3>
+            <h3>Languages and Development</h3>
             <p>
-              Hands on experience developing data driven applications,
-              dashboards, and automation scripts.
+              Comfortable across multiple programming languages and full stack
+              tooling, building data driven applications, dashboards, and APIs.
             </p>
             <div className="flex-chips">
               <span className="chip-title">Technologies:</span>

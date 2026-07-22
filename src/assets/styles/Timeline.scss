@@ -1,38 +1,53 @@
-.vertical-timeline span {
-    color: white;
-    font-family: 'Courier Prime', monospace;
+.vertical-timeline::before {
+    background: var(--border);
 }
 
-.vertical-timeline p {
-    color: rgb(39, 40, 34);
+.vertical-timeline-element-content {
+    background: var(--panel) !important;
+    border: 1px solid var(--border);
+    box-shadow: none !important;
+    border-radius: 4px;
+}
+
+.vertical-timeline-element-content-arrow {
+    border-right-color: var(--panel) !important;
+}
+
+.vertical-timeline-element-icon {
+    background: var(--accent) !important;
+    box-shadow: 0 0 0 3px var(--border) !important;
+}
+
+.vertical-timeline span {
+    color: var(--text);
+    font-family: source-code-pro, Menlo, monospace;
+}
+
+.vertical-timeline-element p,
+.vertical-timeline-element h3,
+.vertical-timeline-element span {
+    color: var(--text);
 }
 
 .vertical-timeline-element p {
-    color: rgb(39, 40, 34);
-}
-
-.vertical-timeline-element h3 {
-    color: rgb(39, 40, 34);
+    color: var(--text-muted);
+    line-height: 1.6;
 }
 
 .vertical-timeline-element h4 {
-    color: rgb(39, 40, 34);
-}
-
-.vertical-timeline-element span {
-    color: rgb(39, 40, 34);
+    color: var(--accent);
 }
 
 .vertical-timeline-element .vertical-timeline-element-date {
-    color: white;
+    color: var(--text-muted);
 }
 
-.svg-inline--fa {
-    color: white;
+.vertical-timeline-element-icon .svg-inline--fa {
+    color: var(--on-accent);
 }
 
 @media screen and (max-width: 1170px) {
     .vertical-timeline-element .vertical-timeline-element-date {
-        color: rgb(39, 40, 34);
+        color: var(--text-muted);
     }
 }

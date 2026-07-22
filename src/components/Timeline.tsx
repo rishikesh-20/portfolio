@@ -31,10 +31,9 @@ function Timeline() {
               Master of Science in Computer Science
             </h4>
             <p>
-              Specialization in data engineering, machine learning, and analytics.
-              Hands on coursework using Python and SQL across databases and
-              large scale data systems. 
-              GPA 4.0.
+              Specializing in data engineering, machine learning, and
+              analytics, with hands on coursework in Python, SQL, and large
+              scale data systems. Maintaining a 4.0 GPA.
             </p>
           </VerticalTimelineElement>
 
@@ -51,9 +50,12 @@ function Timeline() {
               Kastech Technologies, Telangana, India
             </h4>
             <p>
-              Built and optimized ETL workflows using Python and Airflow.
-              Validated and cleaned large datasets with automated quality checks.
-              Supported end to end data pipelines for analytics and machine learning.
+              Orchestrated client data ingestion workflows with Apache Airflow
+              and Airbyte, and optimized ETL pipelines by replacing full-refresh
+              loads with incremental ingestion, cutting runtime by over 50%.
+              Modeled attendance and financial data into PostgreSQL schemas to
+              power HR and P&amp;L reporting dashboards, and standardized Python
+              data quality checks across reporting pipelines.
             </p>
           </VerticalTimelineElement>
 
@@ -70,9 +72,9 @@ function Timeline() {
               Bachelor of Technology in Computer Science
             </h4>
             <p>
-              Strong foundation in core computer science, programming,
-              and data structures. Completed multiple academic projects
-              in software development and analytics. GPA 3.6.
+              Built a strong foundation in core computer science, programming,
+              and data structures, and completed multiple academic projects in
+              software development and analytics. Graduated with a 3.6 GPA.
             </p>
           </VerticalTimelineElement>
         </VerticalTimeline>
