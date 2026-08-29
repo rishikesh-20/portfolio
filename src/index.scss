@@ -498,11 +498,13 @@ h1, h2, h3 {
 
 .typewriter-cursor {
   display: inline-block;
-  color: var(--accent);
-  font-weight: 400;
-  margin-left: 2px;
+  width: 2px;
+  height: 0.95em;
+  margin-left: 3px;
+  vertical-align: -0.14em;
+  background-color: var(--accent);
   animation: tw-blink 0.8s step-end infinite;
-  transition: opacity 600ms ease;
+  transition: opacity 400ms ease;
 }
 
 .typewriter-cursor.cursor-done {

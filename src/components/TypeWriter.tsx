@@ -23,7 +23,7 @@ export default function TypeWriter({ text, charSpeed = 55, startDelay = 400 }: P
           setDisplayed(text.slice(0, indexRef.current));
         } else {
           clearInterval(interval);
-          setTimeout(() => setCursorDone(true), 1500);
+          setTimeout(() => setCursorDone(true), 900);
         }
       }, charSpeed);
       return () => clearInterval(interval);
@@ -35,7 +35,7 @@ export default function TypeWriter({ text, charSpeed = 55, startDelay = 400 }: P
   return (
     <span>
       {displayed}
-      <span className={`typewriter-cursor${cursorDone ? ' cursor-done' : ''}`} aria-hidden="true">|</span>
+      <span className={`typewriter-cursor${cursorDone ? ' cursor-done' : ''}`} aria-hidden="true" />
     </span>
   );
 }
