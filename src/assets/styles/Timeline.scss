@@ -1,53 +1,11 @@
-.vertical-timeline::before {
-    background: var(--border);
+/* Work history renders with the shared .section-row pattern (see Rows.scss).
+   Only the section wrapper needs styling here. */
+#history .items-container {
+    padding: 0;
 }
 
-.vertical-timeline-element-content {
-    background: var(--panel) !important;
-    border: 1px solid var(--border);
-    box-shadow: none !important;
-    border-radius: 4px;
-}
-
-.vertical-timeline-element-content-arrow {
-    border-right-color: var(--panel) !important;
-}
-
-.vertical-timeline-element-icon {
-    background: var(--accent) !important;
-    box-shadow: 0 0 0 3px var(--border) !important;
-}
-
-.vertical-timeline span {
-    color: var(--text);
-    font-family: source-code-pro, Menlo, monospace;
-}
-
-.vertical-timeline-element p,
-.vertical-timeline-element h3,
-.vertical-timeline-element span {
-    color: var(--text);
-}
-
-.vertical-timeline-element p {
-    color: var(--text-muted);
-    line-height: 1.6;
-}
-
-.vertical-timeline-element h4 {
-    color: var(--accent);
-}
-
-.vertical-timeline-element .vertical-timeline-element-date {
-    color: var(--text-muted);
-}
-
-.vertical-timeline-element-icon .svg-inline--fa {
-    color: var(--on-accent);
-}
-
-@media screen and (max-width: 1170px) {
-    .vertical-timeline-element .vertical-timeline-element-date {
-        color: var(--text-muted);
+@media screen and (max-width: 768px) {
+    #history .items-container {
+        padding: 0;
     }
 }

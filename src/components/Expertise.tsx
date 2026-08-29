@@ -1,4 +1,5 @@
 import React from "react";
+import SectionHeading from "./SectionHeading";
 import "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPython, faAws } from "@fortawesome/free-brands-svg-icons";
@@ -44,58 +45,55 @@ const skillsCategoryThree = [
   "Git"
 ];
 
+const groups = [
+  {
+    icon: faPython,
+    title: "AI and Machine Learning",
+    desc: "Building AI and machine learning systems, including retrieval-augmented generation, LLM applications, and predictive modeling with the Python data science stack.",
+    chipTitle: "Skills:",
+    items: skillsCategoryOne,
+  },
+  {
+    icon: faAws,
+    title: "Data Engineering and Cloud",
+    desc: "Experience building and orchestrating data pipelines using modern data engineering frameworks and cloud services.",
+    chipTitle: "Tools:",
+    items: skillsCategoryTwo,
+  },
+  {
+    icon: faCode,
+    title: "Languages and Development",
+    desc: "Comfortable across multiple programming languages and full stack tooling, building data driven applications, dashboards, and APIs.",
+    chipTitle: "Technologies:",
+    items: skillsCategoryThree,
+  },
+];
+
 function Expertise() {
   return (
     <div className="container" id="expertise">
       <div className="skills-container">
-        <h1>Technical Skills</h1>
+        <SectionHeading top="Technical" bottom="Skills" />
 
-        <div className="skills-grid">
-          <div className="skill">
-            <FontAwesomeIcon icon={faPython} size="3x" />
-            <h3>AI and Machine Learning</h3>
-            <p>
-              Building AI and machine learning systems, including
-              retrieval-augmented generation, LLM applications, and predictive
-              modeling with the Python data science stack.
-            </p>
-            <div className="flex-chips">
-              <span className="chip-title">Skills:</span>
-              {skillsCategoryOne.map((label, index) => (
-                <Chip key={index} className="chip" label={label} />
-              ))}
+        <div className="skill-rows">
+          {groups.map((group) => (
+            <div className="skill-row" key={group.title}>
+              <div className="skill-row-head">
+                <span className="skill-row-icon">
+                  <FontAwesomeIcon icon={group.icon} />
+                </span>
+                <div>
+                  <h3>{group.title}</h3>
+                  <p>{group.desc}</p>
+                </div>
+              </div>
+              <div className="skill-row-chips">
+                {group.items.map((label) => (
+                  <Chip key={label} className="chip" label={label} />
+                ))}
+              </div>
             </div>
-          </div>
-
-          <div className="skill">
-            <FontAwesomeIcon icon={faAws} size="3x" />
-            <h3>Data Engineering and Cloud</h3>
-            <p>
-              Experience building and orchestrating data pipelines using modern
-              data engineering frameworks and cloud services.
-            </p>
-            <div className="flex-chips">
-              <span className="chip-title">Tools:</span>
-              {skillsCategoryTwo.map((label, index) => (
-                <Chip key={index} className="chip" label={label} />
-              ))}
-            </div>
-          </div>
-
-          <div className="skill">
-            <FontAwesomeIcon icon={faCode} size="3x" />
-            <h3>Languages and Development</h3>
-            <p>
-              Comfortable across multiple programming languages and full stack
-              tooling, building data driven applications, dashboards, and APIs.
-            </p>
-            <div className="flex-chips">
-              <span className="chip-title">Technologies:</span>
-              {skillsCategoryThree.map((label, index) => (
-                <Chip key={index} className="chip" label={label} />
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
