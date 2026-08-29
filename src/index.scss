@@ -1,40 +1,72 @@
-/* ─── Design tokens (matte earth palette) ─── */
+/* ─── Design tokens ───
+   Built from the supplied palette: EDEDE9 · D6CCC2 · F5EBE0 · E3D5CA · D5BDAF.
+   Light mode uses them directly; dark mode uses deep warm neutrals from the same
+   family with the palette as foreground. All pairs verified at WCAG AA. */
 .dark-mode {
-  --bg: #141b20;
-  --panel: #1b252b;
-  --panel-2: #202c33;
-  --border: #33434c;
-  --text: #e9e3d5;
-  --text-muted: #9fb1b9;
-  --accent: #6f97a8;
-  --accent-hover: #89b0c1;
-  --on-accent: #10171b;
+  --bg: #1C1917;
+  --panel: #262220;
+  --panel-2: #322C29;
+  --border: #463E38;
+  --text: #F5EBE0;
+  --text-muted: #BFB0A4;
+  --accent: #D5BDAF;
+  --accent-hover: #E3D5CA;
+  --on-accent: #1C1917;
+  --ghost: #605348;
+  --accent-2: #B9C2B4;
+  --accent-2-soft: #262B26;
+  --card: #2A2422;
 }
 
 .light-mode {
-  --bg: #e8e6da;
-  --panel: #f1efe4;
-  --panel-2: #e0dccd;
-  --border: #c7cabf;
-  --text: #1b2529;
-  --text-muted: #5b6a70;
-  --accent: #4d7488;
-  --accent-hover: #3b5c6d;
-  --on-accent: #f2efe6;
+  --bg: #F5EBE0;
+  /* Panels match the profile card so every surface reads warm. */
+  --panel: #E3D5CA;
+  --panel-2: #D6CCC2;
+  --border: #D5BDAF;
+  --text: #332C26;
+  --text-muted: #5C5148;
+  --accent: #6E5140;
+  --accent-hover: #533C2F;
+  --on-accent: #F5EBE0;
+  --ghost: #C9B49E;
+  --accent-2: #4E5349;
+  --accent-2-soft: #E2E4DE;
+  --card: #E3D5CA;
+}
+
+/* ─── Type scale (Fraunces, optical-size driven) ─── */
+:root {
+  --fs-display: clamp(2.6rem, 11vw, 9rem);
+  --fs-h2: clamp(2rem, 5vw, 3.5rem);
+  --fs-body: 1.0625rem;
+  --font: "Fraunces", Georgia, "Times New Roman", serif;
+
+  /* One radius scale, used everywhere. */
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
 }
 
 body {
   margin: 0;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Helvetica Neue", sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 14;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.1rem !important;
+  font-size: var(--fs-body) !important;
+  line-height: 1.65;
 }
 
-code {
+/* Monospace survives only inside blog post code, where alignment is functional. */
+.blog-post-body code,
+.blog-post-body pre {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace !important;
-  font-size: 1rem !important;
+  font-size: 0.95rem !important;
 }
 
 .main-container {
@@ -53,48 +85,207 @@ a:hover {
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
 }
 
-p, a, h1, h2, h3, h4, h5, label, button {
+p, a, h1, h2, h3, h4, h5, label, button, input, textarea, li, span, div {
   color: var(--text);
-  font-family: "Inter", sans-serif;
+  font-family: var(--font);
 }
 
 h1, h2, h3 {
-  font-family: "Fraunces", Georgia, serif;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-family: var(--font);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  font-variation-settings: "opsz" 72;
 }
 
-.navigation-bar {
-  justify-content: space-between;
-  background-color: var(--bg);
+/* Two-tone display headline (hero) */
+.display-line {
+  font-family: var(--font);
+  font-size: var(--fs-display);
+  font-weight: 800;
+  font-variation-settings: "opsz" 144;
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  margin: 0;
+}
 
-  button {
-    font-size: 1.1rem;
-    font-family: "Inter", sans-serif;
-    text-transform: initial;
-    padding: 6px 10px;
+.display-line.display-ghost {
+  color: var(--ghost);
+}
+
+/* ─── Floating pill navigation ─── */
+.nav-pill {
+  background: transparent !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  padding-top: 22px;
+  transition: padding-top .3s ease;
+}
+
+.nav-pill.scrolled {
+  padding-top: 12px;
+}
+
+.nav-pill .navigation-bar {
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  margin: 0 auto;
+  min-height: 0 !important;
+  padding: 7px 12px !important;
+  gap: 4px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(10px);
+
+  .nav-link {
+    padding: 9px;
+    border-radius: var(--radius-pill);
+    color: var(--text-muted);
+    transition: color .2s ease, background-color .2s ease;
+
+    svg { font-size: 1.3rem; }
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    color: var(--accent);
+    background-color: var(--panel-2);
   }
 
   svg {
     cursor: pointer;
-    color: var(--text);
+    color: inherit;
   }
 }
 
+/* Tooltips are portaled to body — they inherit tokens because body carries the mode class. */
+.MuiTooltip-tooltip {
+  background-color: var(--panel-2) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border);
+  font-family: var(--font) !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.04em;
+  padding: 6px 10px !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.MuiTooltip-arrow {
+  color: var(--panel-2) !important;
+}
+
+.nav-pill .mode-toggle {
+  color: var(--text-muted) !important;
+  margin-left: 2px;
+  transition: color .2s ease, background-color .2s ease;
+}
+
+.nav-pill .mode-toggle:hover {
+  color: var(--accent) !important;
+  background-color: var(--panel-2) !important;
+}
+
+.nav-drawer .MuiDrawer-paper {
+  background-color: var(--panel);
+  background-image: none;
+  border-right: 1px solid var(--border);
+}
+
 .navigation-bar-responsive {
+  background-color: var(--panel);
+  height: 100%;
+
   span, p {
-    color: #0d1116;
-    font-family: "Inter", sans-serif;
+    color: var(--text);
+    font-family: var(--font);
+  }
+
+  .MuiDivider-root {
+    border-color: var(--border);
+  }
+}
+
+/* ─── Two-column page: sticky profile rail + scrolling content ─── */
+.page-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) 1fr;
+  gap: 56px;
+  /* One shared top offset clearing the nav pill, so the rail and the content
+     column start on the same baseline. */
+  padding: 104px 6% 0 5%;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+.profile-rail {
+  position: sticky;
+  top: 104px;
+}
+
+.page-content {
+  min-width: 0;
+}
+
+/* Sections carry no top padding — spacing lives between them — so a section's
+   top edge is its heading's top edge and anchored jumps land predictably. */
+.page-content > * + * {
+  margin-top: 104px;
+}
+
+/* Tail room so the last section can still scroll to the same offset. */
+.page-content {
+  padding-bottom: 220px;
+}
+
+#expertise, #history, #projects, #blog, #contact {
+  scroll-margin-top: 132px;
+}
+
+.section-heading {
+  margin: 0 0 34px;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-heading .display-line {
+  font-size: var(--fs-h2);
+  font-variation-settings: "opsz" 96;
+  line-height: 0.92;
+}
+
+@media screen and (max-width: 1100px) {
+  .page-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 6%;
+  }
+
+  .profile-rail {
+    position: static;
+    padding-top: 130px;
+    max-width: 360px;
+  }
+
+  .page-content {
+    padding-top: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .page-layout {
+    padding: 0 5%;
+  }
+
+  .profile-rail {
+    max-width: 100%;
   }
 }
 
 .container {
-  margin-top: 64px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   position: relative;
   z-index: 1;
 }
@@ -119,7 +310,7 @@ h1, h2, h3 {
 }
 
 .items-container {
-  padding: 5% 10%;
+  padding: 0;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -132,17 +323,8 @@ h1, h2, h3 {
 .light-mode {
   background-color: var(--bg);
 
-  .navigation-bar {
-    background-color: var(--bg);
-  }
 
-  .vertical-timeline::before {
-    background-color: var(--border);
-  }
 
-  .vertical-timeline--two-columns .vertical-timeline-element-content .vertical-timeline-element-date {
-    color: var(--text-muted);
-  }
 
   .resume-btn {
     border-color: var(--text) !important;
@@ -157,7 +339,7 @@ h1, h2, h3 {
 /* ─── MUI form inputs ─── */
 .MuiOutlinedInput-root {
   background-color: var(--panel) !important;
-  border-radius: 4px !important;
+  border-radius: var(--radius-md) !important;
 }
 
 .MuiInputBase-root { color: var(--text) !important; }
@@ -180,26 +362,9 @@ h1, h2, h3 {
 @media screen {
   @media (max-width: 768px) {
     .items-container {
-      padding: 5% 5%;
+      padding: 0;
     }
   }
-}
-
-/* ─── Shader (react-three-fiber) background ─── */
-.shader-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.55;
-}
-
-.light-mode .shader-bg {
-  opacity: 0.4;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .shader-bg { opacity: 0.3; }
 }
 
 /* ─── Film grain overlay ─── */
@@ -208,9 +373,8 @@ h1, h2, h3 {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
 }
 
 /* ─── Scroll reveal (base fade-rise) ─── */
@@ -245,18 +409,18 @@ h1, h2, h3 {
 }
 
 /* ─── Staggered card fade-rise ─── */
-.scroll-reveal .projects-grid .project,
+.scroll-reveal .section-rows .section-row,
 .scroll-reveal .skills-grid .skill {
   opacity: 0;
 }
 
-.scroll-reveal.is-visible .projects-grid .project,
+.scroll-reveal.is-visible .section-rows .section-row,
 .scroll-reveal.is-visible .skills-grid .skill {
   animation: card-rise 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @for $i from 1 through 6 {
-  .scroll-reveal.is-visible .projects-grid .project:nth-child(#{$i}),
+  .scroll-reveal.is-visible .section-rows .section-row:nth-child(#{$i}),
   .scroll-reveal.is-visible .skills-grid .skill:nth-child(#{$i}) {
     animation-delay: #{160 + ($i - 1) * 110}ms;
   }
@@ -267,35 +431,8 @@ h1, h2, h3 {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ─── Project image clip-reveal ─── */
-.scroll-reveal .project .img-mask img {
-  clip-path: inset(0 0 100% 0);
-}
-
-.scroll-reveal.is-visible .project .img-mask img {
-  animation: img-reveal 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@for $i from 1 through 6 {
-  .scroll-reveal.is-visible .projects-grid .project:nth-child(#{$i}) .img-mask img {
-    animation-delay: #{220 + ($i - 1) * 110}ms;
-  }
-}
-
-@keyframes img-reveal {
-  from { clip-path: inset(0 0 100% 0); transform: scale(1.06); }
-  to   { clip-path: inset(0 0 0 0);    transform: scale(1); }
-}
-
 /* ─── Animated link underline (nav + inline) ─── */
-.navigation-bar .nav-link {
-  position: relative;
-}
 
-.navigation-bar .nav-link .MuiTouchRipple-root { display: none; }
-.navigation-bar .nav-link:hover { background: transparent; }
-
-.navigation-bar .nav-link::after,
 .about-section .content .bio a::after,
 .contact_wrapper a::after {
   content: "";
@@ -317,7 +454,6 @@ h1, h2, h3 {
   bottom: -2px;
 }
 
-.navigation-bar .nav-link:hover::after,
 .about-section .content .bio a:hover::after,
 .contact_wrapper a:hover::after {
   transform: scaleX(1);
@@ -329,33 +465,30 @@ h1, h2, h3 {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes hero-img-reveal {
-  from { opacity: 0; clip-path: inset(0 0 100% 0); transform: scale(1.05); }
-  to   { opacity: 1; clip-path: inset(0 0 0 0);    transform: scale(1); }
+.about-section .content .display-line {
+  display: block;
+  animation: mask-up 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.about-section .image-wrapper {
-  animation: hero-img-reveal 1000ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
-}
+.about-section .content .display-line:nth-child(1) { animation-delay: 160ms; }
+.about-section .content .display-line:nth-child(2) { animation-delay: 300ms; }
 
-.about-section .content h1 {
-  animation: mask-up 900ms cubic-bezier(0.22, 1, 0.36, 1) 260ms both;
-}
-
-.about-section .content .social_icons a {
+.profile-card .social_icons a {
   opacity: 0;
   animation: hero-fade-up 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @for $i from 1 through 3 {
-  .about-section .content .social_icons a:nth-child(#{$i}) {
-    animation-delay: #{140 + ($i - 1) * 90}ms;
+  .profile-card .social_icons a:nth-child(#{$i}) {
+    animation-delay: #{560 + ($i - 1) * 90}ms;
   }
 }
 
-.about-section .content p.tagline { animation: hero-fade-up 620ms cubic-bezier(0.22, 1, 0.36, 1) 620ms both; }
-.about-section .content > p:not(.tagline):not(.bio) { animation: hero-fade-up 620ms cubic-bezier(0.22, 1, 0.36, 1) 820ms both; }
-.about-section .content p.bio { animation: hero-fade-up 720ms cubic-bezier(0.22, 1, 0.36, 1) 980ms both; }
+.profile-card .profile-name { animation: hero-fade-up 620ms cubic-bezier(0.22, 1, 0.36, 1) 300ms both; }
+.profile-card .profile-role { animation: hero-fade-up 620ms cubic-bezier(0.22, 1, 0.36, 1) 420ms both; }
+.profile-card .profile-blurb { animation: hero-fade-up 620ms cubic-bezier(0.22, 1, 0.36, 1) 500ms both; }
+.about-section .content p.bio { animation: hero-fade-up 720ms cubic-bezier(0.22, 1, 0.36, 1) 700ms both; }
+
 
 /* ─── Typewriter cursor ─── */
 @keyframes tw-blink {
@@ -365,11 +498,13 @@ h1, h2, h3 {
 
 .typewriter-cursor {
   display: inline-block;
-  color: var(--accent);
-  font-weight: 400;
-  margin-left: 2px;
+  width: 2px;
+  height: 0.95em;
+  margin-left: 3px;
+  vertical-align: -0.14em;
+  background-color: var(--accent);
   animation: tw-blink 0.8s step-end infinite;
-  transition: opacity 600ms ease;
+  transition: opacity 400ms ease;
 }
 
 .typewriter-cursor.cursor-done {
@@ -381,14 +516,13 @@ h1, h2, h3 {
 @media (prefers-reduced-motion: reduce) {
   .scroll-reveal,
   .scroll-reveal h1,
-  .scroll-reveal .projects-grid .project,
+  .scroll-reveal .section-rows .section-row,
   .scroll-reveal .skills-grid .skill,
-  .scroll-reveal .project .img-mask img,
-  .about-section .image-wrapper,
-  .about-section .content h1,
-  .about-section .content .social_icons a,
-  .about-section .content p.tagline,
-  .about-section .content > p:not(.tagline):not(.bio),
+  .about-section .content .display-line,
+  .profile-card .social_icons a,
+  .profile-card .profile-name,
+  .profile-card .profile-role,
+  .profile-card .profile-blurb,
   .about-section .content p.bio {
     opacity: 1 !important;
     transform: none !important;

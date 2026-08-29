@@ -1,193 +1,184 @@
-.about-section {
-    display: flex;
-    gap: 30px;
-    justify-content: flex-start;
-    align-items: center;
+/* ─── Profile card (lives in the sticky rail, see .profile-rail) ─── */
+.profile-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px 24px 28px;
+    text-align: center;
+}
+
+.profile-card .image-wrapper {
+    position: relative;
     width: 100%;
-    padding: 0px 15%;
-    min-height: 700px;
+    padding-top: 125%; /* 4:5 ratio box — no aspect-ratio, so Safari-safe */
+    margin-bottom: 20px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--panel-2);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        opacity: 1;
+    }
+}
+
+.profile-card .profile-name {
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 8px;
+    font-variation-settings: "opsz" 72;
+}
+
+.profile-card .profile-role {
+    color: var(--accent);
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    margin: 0 0 14px;
+}
+
+.profile-card .profile-blurb {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin: 0 0 20px;
+}
+
+.profile-card .social_icons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+
+    svg { font-size: 1.45em; }
+}
+
+.profile-card .social_icons a {
+    display: inline-flex;
+    color: var(--text);
+    transition: color 250ms ease, transform 250ms ease;
+}
+
+.profile-card .social_icons a:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* ─── Hero (content column only) ─── */
+.about-section {
+    width: 100%;
+    min-height: calc(100vh - 104px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .about-section .content {
     text-align: left;
-    z-index: 2;
+}
 
-    .social_icons {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        color: var(--text);
+.about-section .content .display-name {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
 
-        svg {
-            font-size: 1.8em;
-        }
+.about-section .content .bio {
+    color: var(--text-muted);
+    font-size: 1.08rem;
+    line-height: 1.65;
+    margin: 30px 0 0;
+    max-width: 660px;
+}
+
+@media screen and (max-width: 1100px) {
+    .about-section {
+        min-height: auto;
+        padding-bottom: 40px;
+    }
+}
+
+/* Below the two-column breakpoint the card goes horizontal: a small portrait
+   beside the text, so the hero name is reachable without a full screen of scroll. */
+@media screen and (max-width: 900px) {
+    .profile-card {
+        display: grid;
+        grid-template-columns: 132px 1fr;
+        grid-template-rows: repeat(4, auto);
+        column-gap: 20px;
+        align-items: start;
+        text-align: left;
+        padding: 20px;
     }
 
-    .mobile_social_icons {
+    .profile-card .image-wrapper {
+        grid-row: 1 / -1;
+        padding-top: 165px;
+        margin-bottom: 0;
+    }
+
+    .profile-card .profile-name {
+        font-size: 1.45rem;
+        margin-bottom: 6px;
+    }
+
+    .profile-card .profile-role {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .profile-card .profile-blurb {
+        font-size: 0.88rem;
+        margin-bottom: 14px;
+    }
+
+    .profile-card .social_icons {
+        justify-content: flex-start;
+        gap: 16px;
+
+        svg { font-size: 1.3em; }
+    }
+
+    .profile-card .profile-name,
+    .profile-card .profile-role,
+    .profile-card .profile-blurb,
+    .profile-card .social_icons {
+        grid-column: 2;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .profile-card {
+        grid-template-columns: 104px 1fr;
+        grid-template-rows: repeat(3, auto);
+        column-gap: 16px;
+        padding: 16px;
+    }
+
+    .profile-card .image-wrapper {
+        padding-top: 130px;
+    }
+
+    .profile-card .profile-name {
+        font-size: 1.25rem;
+    }
+
+    .profile-card .profile-blurb {
         display: none;
     }
-
-    p {
-        font-size: 1.5em;
-        margin-block-start: 0px;
-        margin-block-end: 0px;
-    }
-
-    p.tagline {
-        font-size: 1.2em;
-        font-weight: 300;
-        letter-spacing: 0.05em;
-        margin-top: 8px;
-        opacity: 0.85;
-    }
-
-    p.bio {
-        font-size: 1em;
-        font-weight: 300;
-        line-height: 1.6;
-        margin-top: 14px;
-        max-width: 500px;
-        opacity: 0.9;
-    }
-
-    .resume-btn {
-        margin-top: 20px !important;
-        border-color: white !important;
-        color: white !important;
-        text-transform: none !important;
-        font-size: 1rem !important;
-        padding: 8px 20px !important;
-
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.1) !important;
-        }
-    }
-
-    h1 {
-        font-size: 5em;
-        margin-block-start: 0px;
-        margin-block-end: 0px;
-    }
 }
 
-.about-section .image-wrapper {
-    z-index: 2;
-    img {
-        width: 210px;
-        border-radius: 50%;
-        box-shadow: 0 0 0 2px var(--accent);
-    }
-}
-
-.about-section .content .social_icons a,
-.about-section .content .mobile_social_icons a {
-    display: inline-flex;
-    color: var(--text);
-    transition: color 250ms ease;
-}
-
-.about-section .content .social_icons a:hover,
-.about-section .content .mobile_social_icons a:hover {
-    color: var(--accent);
-}
-
-.about p {
-    text-align: center;
-    padding-top: 30%;
-    padding-bottom: 30%;
-}
-
-@media screen {
-    @media (max-width: 567px) {
-        .nav-left{
-            padding-top: 20px;
-            float:left;
-        }
-
-        .nav-left img {
-            height: 35px
-        }
-
-        .nav-right {
-            float:right;
-        }
-
-        .nav-right li {
-            padding: 10px 15px;
-            list-style:none;
-            font-size:13px;
-            color:white;
-            width: 10%;
-        }
-
-        .nav-right ul {
-            list-style-type: none;
-            margin: 0px;
-            padding: 0px;
-        }
-
-        body {
-            width: 100%;
-        }
-
-        .about {
-            padding-left: 5%;
-            padding-right: 5%;
-            font-size: 12px;
-        }
-    }
-
-    @media (max-width:768px) {
-        .about-section h1 {
-            font-size: 4em !important;
-            text-align: left;
-        }
-
-        .about-section p {
-            text-align: left;
-        }
-
-        .container {
-            display: initial;
-        }
-
-        .social_icons {
-            display: none !important;
-        }
-
-        .mobile_social_icons {
-            padding-top: 10px;
-            display: flex !important;
-            flex-direction: row;
-            gap: 10px;
-            color: var(--text);
-
-            svg {
-                font-size: 1.8em;
-            }
-        }
-
-        .about-section {
-            padding-top: 150px;
-            display: block;
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-
-        .about-section .content {
-            width: 90%;
-            padding-left: 5%;
-            padding-right: 5%;
-            padding-bottom: 5%;
-        }
-
-        .about-section .image-wrapper {
-            padding-left: 5%;
-            width: 100%;
-
-            img {
-                width: 160px;
-            }
-        }
+@media screen and (max-width: 768px) {
+    .about-section .content .bio {
+        font-size: 1rem;
+        margin-top: 22px;
     }
 }

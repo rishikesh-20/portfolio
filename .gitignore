@@ -24,3 +24,9 @@ yarn-error.log*
 
 # Claude Code
 .claude/
+
+# Sanity / local env
+.env
+sanity/node_modules
+sanity/dist
+sanity/.sanity

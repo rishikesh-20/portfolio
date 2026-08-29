@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
 import CssBaseline from '@mui/material/CssBaseline';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Divider from '@mui/material/Divider';
@@ -15,13 +15,22 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
+import HomeIcon from '@mui/icons-material/Home';
+import LayersIcon from '@mui/icons-material/Layers';
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 const drawerWidth = 240;
-const navItems = [
-  ['Technical Skills', 'expertise'],
-  ['Education & Work', 'history'],
-  ['Projects', 'projects'],
-  ['Contact', 'contact']
+
+const navItems: [string, string, React.ReactElement][] = [
+  ['Home', 'top', <HomeIcon />],
+  ['Skills', 'expertise', <LayersIcon />],
+  ['Work', 'history', <WorkOutlineIcon />],
+  ['Projects', 'projects', <DashboardIcon />],
+  ['Blog', 'blog', <EditNoteIcon />],
+  ['Contact', 'contact', <MailOutlineIcon />],
 ];
 
 function Navigation({parentToChild, modeChange}: any) {
@@ -37,11 +46,7 @@ function Navigation({parentToChild, modeChange}: any) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const navbar = document.getElementById("navigation");
-      if (navbar) {
-        const scrolled = window.scrollY > navbar.clientHeight;
-        setScrolled(scrolled);
-      }
+      setScrolled(window.scrollY > 40);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -51,15 +56,27 @@ function Navigation({parentToChild, modeChange}: any) {
     };
   }, []);
 
+  const NAV_OFFSET = 104;
+
   const scrollToSection = (section: string) => {
-    console.log(section)
-    const expertiseElement = document.getElementById(section);
-    if (expertiseElement) {
-      expertiseElement.scrollIntoView({ behavior: 'smooth' });
-      console.log('Scrolling to:', expertiseElement);  // Debugging: Ensure the element is found
-    } else {
-      console.error('Element with id "expertise" not found');  // Debugging: Log error if element is not found
+    if (section === 'top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
+    const element = document.getElementById(section);
+    if (!element) return;
+
+    // Sections sit inside ScrollReveal, which applies a translateY until revealed.
+    // getBoundingClientRect/scrollIntoView include that transform, so the landing
+    // position shifts depending on whether the section has animated in yet.
+    // offsetTop is layout-based and ignores transforms, so it stays consistent.
+    let top = 0;
+    let node: HTMLElement | null = element;
+    while (node) {
+      top += node.offsetTop;
+      node = node.offsetParent as HTMLElement | null;
+    }
+    window.scrollTo({ top: Math.max(top - NAV_OFFSET, 0), behavior: 'smooth' });
   };
 
   const drawer = (
@@ -81,33 +98,44 @@ function Navigation({parentToChild, modeChange}: any) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav" id="navigation" className={`navbar-fixed-top${scrolled ? ' scrolled' : ''}`}>
+      <AppBar component="nav" id="navigation" className={`nav-pill${scrolled ? ' scrolled' : ''}`}>
         <Toolbar className='navigation-bar'>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 1, display: { md: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
-          {mode === 'dark' ? (
-            <LightModeIcon onClick={() => modeChange()}/>
-          ) : (
-            <DarkModeIcon onClick={() => modeChange()}/>
-          )}
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+
+          <Box className="nav-items" sx={{ display: { xs: 'none', md: 'flex' } }}>
             {navItems.map((item) => (
-              <Button key={item[0]} onClick={() => scrollToSection(item[1])} className="nav-link" sx={{ color: 'var(--text)' }}>
-                {item[0]}
-              </Button>
+              <Tooltip key={item[0]} title={item[0]} arrow enterDelay={120}>
+                <IconButton
+                  onClick={() => scrollToSection(item[1])}
+                  className="nav-link"
+                  aria-label={item[0]}
+                >
+                  {item[2]}
+                </IconButton>
+              </Tooltip>
             ))}
           </Box>
+
+          <IconButton
+            className="mode-toggle"
+            onClick={() => modeChange()}
+            aria-label={mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {mode === 'dark' ? <LightModeIcon/> : <DarkModeIcon/>}
+          </IconButton>
         </Toolbar>
       </AppBar>
       <nav>
         <Drawer
+          className="nav-drawer"
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
@@ -115,7 +143,7 @@ function Navigation({parentToChild, modeChange}: any) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
+            display: { xs: 'block', md: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >

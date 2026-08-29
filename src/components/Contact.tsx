@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import SectionHeading from "./SectionHeading";
 import '../assets/styles/Contact.scss';
 import emailjs from '@emailjs/browser';
 import Box from '@mui/material/Box';
@@ -53,7 +54,7 @@ function Contact() {
     <div id="contact">
       <div className="items-container">
         <div className="contact_wrapper">
-          <h1>Contact Me</h1>
+          <SectionHeading top="Let's Work" bottom="Together" />
           <p>Got a project waiting to be realized? Let's collaborate and make it happen!</p>
           <Box
             ref={form}
