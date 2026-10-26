@@ -17,10 +17,18 @@ const history = [
   {
     kind: "experience",
     icon: faBriefcase,
+    title: "Data Engineer I",
+    subtitle: "Kastech Technologies, Telangana, India",
+    date: "January 2024 — December 2024",
+    body: "Built an Airbyte and Python REST API ingestion framework loading 5M+ records from 12 HR, finance, and sales sources into Amazon S3 and PostgreSQL via daily Airflow DAGs. Drove the migration of 15+ legacy SQL scripts to dbt Core with incremental models that cut runtime by over 50%, and owned 17K+ Airflow task runs at 99.5% SLA attainment backed by 40+ dbt tests. Developed star-schema dbt marts powering Metabase dashboards for 40+ stakeholders, accelerating reporting by 82% and cutting ad hoc requests by about 60%.",
+  },
+  {
+    kind: "experience",
+    icon: faBriefcase,
     title: "Data Engineering Intern",
     subtitle: "Kastech Technologies, Telangana, India",
-    date: "August 2024 — November 2024",
-    body: "Orchestrated client data ingestion workflows with Apache Airflow and Airbyte, and optimized ETL pipelines by replacing full-refresh loads with incremental ingestion, cutting runtime by over 50%. Modeled attendance and financial data into PostgreSQL schemas to power HR and P&L reporting dashboards, and standardized Python data quality checks across reporting pipelines.",
+    date: "September 2023 — December 2023",
+    body: "Replaced manual CSV exports of client financial data with a Python ingestion script loading Amazon S3 and PostgreSQL, cutting monthly finance reporting prep by 75% (2 days to 4 hours). Built a 120-query SQL validation suite in DBeaver that flagged 30+ duplicate-key anomalies across 45K+ monthly attendance records in its first week.",
   },
   {
     kind: "education",
